@@ -1,0 +1,251 @@
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Paper Less</title>
+        <!-- materialize icons, css & js -->
+        <link type="text/css" href="/css/materialize.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" href="/css/styles.css" rel="stylesheet">
+        <script type="text/javascript" src="/js/materialize.min.js"></script>
+        <link rel="manifest" href="/manifest.json">
+        <link rel="apple-touch-icon" href="/img/icons/icon-96x96.png">
+        <meta name="apple-mobile-web-app-status-bar" content="#FFE1C4">
+        <meta name="theme-color" content="#FFE1C4">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
+        </script>
+</head>
+
+
+<body class="grey lighten-4">
+
+        <nav class="z-depth-0">
+                <div class="nav-wrapper container">
+                        <center>3 AC Form</center>
+                </div>
+        </nav>
+        <div class="row">
+                <form class="col s12">
+                        <a href='#' onClick="autoFill();"> Click to Auto-Fill </a>
+                        <div class="row">
+                                <div class="input-field col s6">
+                                        <!-- <i class="material-icons prefix">account_circle</i> -->
+                                        <input placeholder="Username" id="name" type="text" class="active validate"
+                                                required />
+                                        <label for="name">Username</label>
+                                </div>
+                                <div class="input-field col s2">
+                                        <label><input type="text" class="tel-number-field" name="tel_no_1" value=""
+                                                        maxlength="2" /></label>
+                                </div>
+                                <div class="input-field col s2">
+                                        <label><input type="text" class="tel-number-field" name="tel_no_1" value=""
+                                                        maxlength="2" /></label>
+                                </div>
+                                <div class="input-field col s2">
+                                        <label><input type="text" class="tel-number-field" name="tel_no_1" value=""
+                                                        maxlength="3" /></label>
+                                </div>
+                                <label for="tel-number-field">ID</label>
+                        </div>
+
+                        <div class="row">
+                                <div class="input-field col s12">
+                                        <input placeholder="Email" id="email" type="email" class="validate">
+                                        <label for="email">Email</label>
+                                </div>
+                        </div>
+
+                        <div class="row">
+                                <div class="input-field col s12">
+                                        <i class="material-icons prefix">mode_edit</i>
+                                        <textarea id="address" class="materialize-textarea"></textarea>
+                                        <label for="address">Address</label>
+                                </div>
+                        </div>
+
+                        <div class="row">
+                                <div class="input-field col s12">
+                                        <input placeholder="Comments (Disabled)" id="comments" type="text" disabled />
+                                        <label for="comments">Comments</label>
+                                </div>
+                        </div>
+
+                        <div class="row">
+                                <div class="input-field col s12">
+                                        <p>
+                                                <input id="married" type="checkbox" class="filled-in" />
+                                                <label for="married">Married</label>
+                                        </p>
+
+                                        <p>
+                                                <input id="single" type="checkbox" class="filled-in" />
+                                                <label for="single">Single</label>
+                                        </p>
+
+                                        <p>
+                                                <input id="dontknow" type="checkbox" disabled="disabled" />
+                                                <label for="dontknow">Don't know (Disabled)</label>
+                                        </p>
+                                </div>
+                        </div>
+
+                        <div class="row">
+                                <div class="input-field col s12">
+                                        <p>
+                                                <input id="male" type="radio" name="gender" value="male" checked />
+                                                <label for="male">Male</label>
+                                        </p>
+
+                                        <p>
+                                                <input id="female" type="radio" name="gender" value="female" checked />
+                                                <label for="female">Female</label>
+                                        </p>
+
+                                        <p>
+                                                <input id="dontknow1" type="radio" name="gender" value="female"
+                                                        disabled />
+                                                <label for="dontknow1">Don't know (Disabled)</label>
+                                        </p>
+                                </div>
+                        </div>
+                        <a class="btn yellow darken-2 z-depth-0">
+                                <i>Save and Forward</i></a>
+                        <a href="/index.html" class="btn red darken-2 z-depth-0">Back</a>
+                </form>
+        </div>
+
+        <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-firestore.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#config-web-app -->
+
+        <script>
+                // Your web app's Firebase configuration
+                var firebaseConfig = {
+                        apiKey: "AIzaSyCa3CQLhZJnqoBPGPaoT8lPV5o4aavy3Lg",
+                        authDomain: "aveli-6be64.firebaseapp.com",
+                        databaseURL: "https://aveli-6be64.firebaseio.com",
+                        projectId: "aveli-6be64",
+                        storageBucket: "aveli-6be64.appspot.com",
+                        messagingSenderId: "609957635283",
+                        appId: "1:609957635283:web:dcb661e265a9ba0f"
+                };
+                // Initialize Firebase
+                firebase.initializeApp(firebaseConfig);
+                const auth = firebase.auth();
+                const db = firebase.firestore();
+
+        </script>
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="/scripts/sampleform.js"></script>
+        <script src="/js/db.js"></script>
+        <script src="/js/app.js"></script>
+        <script src="/js/ui.js"></script>
+</body>
+
+<!-- <body class="grey lighten-4">
+        <div class="form-style-2">
+                <div class="form-style-2-heading">Provide your information</div>
+                <form action="" method="post">
+                        <input placeholder="Name" id="name" type="text" class="validate">
+                        <label for="name">Name</label>
+                        <input placeholder="Email" id="email" type="email" class="validate">
+                        <label for="email">Email</label>
+                        <label><span>Telephone</span><input type="text" class="tel-number-field" name="tel_no" value=""
+                                        maxlength="10" /></label>
+                        <label for="field4"><span>Regarding</span><select name="field4" class="select-field">
+                                        <option value="General Question">General</option>
+                                        <option value="Advertise">Advertisement</option>
+                                        <option value="Partnership">Partnership</option>
+                                </select></label>
+                        <label for="field5"><span>Message <span class="required">*</span></span><textarea name="field5"
+                                        class="textarea-field"></textarea></label>
+                </form>
+        </div>
+
+        <style type="text/css">
+                .form-style-2 {
+                        max-width: 500px;
+                        padding: 20px 12px 10px 20px;
+                        font: 13px Arial, Helvetica, sans-serif;
+                }
+
+                .form-style-2-heading {
+                        font-weight: bold;
+                        font-style: italic;
+                        border-bottom: 2px solid #ddd;
+                        margin-bottom: 20px;
+                        font-size: 15px;
+                        padding-bottom: 3px;
+                }
+
+                .form-style-2 label {
+                        display: block;
+                        margin: 0px 0px 15px 0px;
+                }
+
+                .form-style-2 label>span {
+                        width: 100px;
+                        font-weight: bold;
+                        float: left;
+                        padding-top: 8px;
+                        padding-right: 5px;
+                }
+
+                .form-style-2 span.required {
+                        color: red;
+                }
+
+                .form-style-2 .tel-number-field {
+                        width: 40px;
+                        text-align: center;
+                }
+
+                .form-style-2 input.input-field,
+                .form-style-2 .select-field {
+                        width: 48%;
+                }
+
+                .form-style-2 input.input-field,
+                .form-style-2 .tel-number-field,
+                .form-style-2 .textarea-field,
+                .form-style-2 .select-field {
+                        box-sizing: border-box;
+                        -webkit-box-sizing: border-box;
+                        -moz-box-sizing: border-box;
+                        border: 1px solid #C2C2C2;
+                        box-shadow: 1px 1px 4px #EBEBEB;
+                        -moz-box-shadow: 1px 1px 4px #EBEBEB;
+                        -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+                        border-radius: 3px;
+                        -webkit-border-radius: 3px;
+                        -moz-border-radius: 3px;
+                        padding: 7px;
+                        outline: none;
+                }
+
+                .form-style-2 .input-field:focus,
+                .form-style-2 .tel-number-field:focus,
+                .form-style-2 .textarea-field:focus,
+                .form-style-2 .select-field:focus {
+                        border: 1px solid #0C0;
+                }
+
+                .form-style-2 .textarea-field {
+                        height: 100px;
+                        width: 55%;
+                }
+        </style>
+        <script src="/js/app.js"></script>
+        <script src="/js/ui.js"></script>
+</body> -->
+
+</html>
