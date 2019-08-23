@@ -1,3 +1,5 @@
+const outpreview = document.querySelector('.outpreview');
+
 var ouserid = '';
 var oname = '';
 var oid = '';
@@ -6,10 +8,14 @@ var oage = '';
 var oprogram = '';
 var osection = '';
 var oemail = '';
+var osem = '';
 
-const saveandforwardButton = document.getElementById('forward');
-
-saveandforwardButton.addEventListener("click", sendNotification);
+var obeg = '';
+var oend = '';
+var reason = '';
+	
+var today = new Date();
+var date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
 
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
@@ -22,10 +28,38 @@ auth.onAuthStateChanged(user => {
             oage = doc.data().Age;
             oprogram = doc.data().Program;
             osection = doc.data().Section;
+            osem = doc.data().Sem;
         })
     }
 })
 
+function getData()
+{
+    document.getElementById('datefrom').value = obeg;
+    document.getElementById('dateto').value = oend;
+    document.getElementById('reason').value = reason;
+    preview();
+}
+
+function preview()
+{   
+    const html = `The Head of the Department<br>
+    ${obranch}<br>
+    National Institute of Technology Silchar<br><br>
+    ${date}<br><b>Subject:</b>Application for leave<br>Respected Sir<br>
+    This is to inform you that I, ${oname}, am ${osem} Sem student in the department of ${obranch}
+    with Scholar ID: ${oid}. <br>
+    Due to the following reason(s), I was not able to attend the lectures from ${obeg} to ${oend}.
+    Reason being, ${reason}. <br>
+
+    Hence, you are kindly requested you to issue leave for the above-mentioned dates.<br>
+    Thanking You <br>
+    Yours Sincerely <br>
+    ${oname}<br>
+    ${obranch}<br>
+    National Institute of Technology Silchar`;
+    outpreview.innerHTML = html
+}
 
 function autoFill() {
     document.getElementById('name').value = oname;
@@ -36,6 +70,11 @@ function autoFill() {
 
     document.getElementById('email').value = oemail;
 };
+
+
+const saveandforwardButton = document.getElementById('forward');
+
+saveandforwardButton.addEventListener("click", sendNotification);
 
 function sendNotification() {
     //e.preventDefault();

@@ -25,7 +25,7 @@
 
         <nav class="z-depth-0">
                 <div class="nav-wrapper container">
-                        <center>Sample Form</center>
+                        <center>Leave Application (Basic Details)</center>
                 </div>
         </nav>
         <div class="row">
@@ -34,7 +34,7 @@
                         <div class="row">
                                 <div class="input-field col s6">
                                         <!-- <i class="material-icons prefix">account_circle</i> -->
-                                        <input placeholder="Username" id="name" type="text" class="active validate"
+                                        <input placeholder="Name" id="name" type="text" class="active validate"
                                                 required />
                                         <label for="name">Name</label>
                                 </div>
@@ -60,22 +60,31 @@
                                 </div>
                         </div>
 
-                        <div class="row">
+                        <!-- <div class="row">
                                 <div class="input-field col s12">
                                         <i class="material-icons prefix">mode_edit</i>
                                         <textarea id="address" class="materialize-textarea"></textarea>
                                         <label for="address">Address</label>
                                 </div>
+                        </div> -->
+                        <div class="row">
+                                <div class="input-field col s4">
+                                        <input id="datefrom" type="date" />
+                                        <label for="datefrom">Leave Beginning Date</label>
+                                </div>
+                                <div class="input-field col s4">
+                                        <input id="dateto" type="date" />
+                                        <label for="dateto">Leave Ending Date</label>
+                                </div>
                         </div>
-
                         <div class="row">
                                 <div class="input-field col s12">
-                                        <input placeholder="Comments (Disabled)" id="comments" type="text" disabled />
-                                        <label for="comments">Comments</label>
+                                        <input placeholder="Reason" id="reason" type="text" />
+                                        <label for="reason">Reason for Leave</label>
                                 </div>
                         </div>
 
-                        <div class="row">
+                        <!-- <div class="row">
                                 <div class="input-field col s12">
                                         <p>
                                                 <input id="married" type="checkbox" class="filled-in" />
@@ -92,9 +101,9 @@
                                                 <label for="dontknow">Don't know (Disabled)</label>
                                         </p>
                                 </div>
-                        </div>
+                        </div> -->
 
-                        <div class="row">
+                        <!-- <div class="row">
                                 <div class="input-field col s12">
                                         <p>
                                                 <input id="male" type="radio" name="gender" value="male" checked />
@@ -106,19 +115,21 @@
                                                 <label for="female">Female</label>
                                         </p>
 
-                                        <p>
+                                         <p>
                                                 <input id="dontknow1" type="radio" name="gender" value="female"
                                                         disabled />
                                                 <label for="dontknow1">Don't know (Disabled)</label>
                                         </p>
                                 </div>
-                        </div>
+                        </div> -->
                         <!-- <a class="btn yellow darken-2 z-depth-0" id="forward">
                                 <i>Save and Forward</i></a> -->
-                        <button id="forward">Save and Forward</button>
-                        <a href="/index.html" class="btn red darken-2 z-depth-0">Back</a>
+                                <a href="#" onclick="getData();" class="btn red darken-2 z-depth-0">Save</a>
+                                <a href="#" onclick="preview();" class="btn red darken-2 z-depth-0">Preview</a>
+                                <a href="/index.html" class="btn red darken-2 z-depth-0">Back</a>
                 </form>
         </div>
+        <div class="outpreview"></div>
 
         <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-auth.js"></script>

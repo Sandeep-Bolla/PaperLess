@@ -5,16 +5,16 @@ const loggedInLinks = document.querySelectorAll('.logged-in');
 const accountDetailLinks = document.querySelector('.account-details');
 const welcomeDetailLinks = document.querySelector('.welcome-details');
 
-const welcomeUI = (user) => {
-  if (user) {
-    db.collection('users').doc(user.uid).get().then(doc => {
-      const html = `
-      <div><h4>Hello,  ${doc.data().Name}</h4></div>
-      `;
-      welcomeDetailLinks.innerHTML = html
-    } )
-  }
-};
+// const welcomeUI = (user) => {
+//   if (user) {
+//     db.collection('users').doc(user.uid).get().then(doc => {
+//       const html = `
+//       <div><h4>Hello,  ${doc.data().Name}</h4></div>
+//       `;
+//       welcomeDetailLinks.innerHTML = html
+//     } )
+//   }
+// };
 
 const setupUI = (user) => {
   if (user) {
