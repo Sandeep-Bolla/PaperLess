@@ -7,6 +7,9 @@ var oprogram = '';
 var osection = '';
 var oemail = '';
 
+const saveandforwardButton = document.getElementById('forward');
+
+saveandforwardButton.addEventListener("click", sendNotification);
 
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
@@ -20,7 +23,7 @@ auth.onAuthStateChanged(user => {
             oprogram = doc.data().Program;
             osection = doc.data().Section;
         })
-    } 
+    }
 })
 
 
@@ -33,3 +36,22 @@ function autoFill() {
 
     document.getElementById('email').value = oemail;
 };
+
+function sendNotification() {
+    //e.preventDefault();
+    const notificationMessage = "Got a notification Sir";
+    //if ( !notificationMessage ) return;
+
+    ddb.ref('/notifications')
+        .push({
+            user: auth.currentUser.displayName,
+            message: notificationMessage,
+            //userProfileImg: auth.currentUser.photoURL
+        })
+        .then(() => {
+            document.getElementById('notification-message').value = "";
+        })
+        .catch(() => {
+            console.log("error sending notification :(")
+        });
+}

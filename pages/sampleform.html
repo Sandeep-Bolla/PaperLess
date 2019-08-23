@@ -113,8 +113,9 @@
                                         </p>
                                 </div>
                         </div>
-                        <a class="btn yellow darken-2 z-depth-0">
-                                <i>Save and Forward</i></a>
+                        <!-- <a class="btn yellow darken-2 z-depth-0" id="forward">
+                                <i>Save and Forward</i></a> -->
+                        <button id="forward">Save and Forward</button>
                         <a href="/index.html" class="btn red darken-2 z-depth-0">Back</a>
                 </form>
         </div>
@@ -122,6 +123,7 @@
         <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-database.js"></script>
 
         <!-- TODO: Add SDKs for Firebase products that you want to use
       https://firebase.google.com/docs/web/setup#config-web-app -->
@@ -141,6 +143,7 @@
                 firebase.initializeApp(firebaseConfig);
                 const auth = firebase.auth();
                 const db = firebase.firestore();
+                const ddb = firebase.database();
         </script>
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

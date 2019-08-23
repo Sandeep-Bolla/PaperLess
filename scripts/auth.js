@@ -4,6 +4,7 @@ auth.onAuthStateChanged(user => {
     console.log('user logged in: ', user);
     setupUI(user);
     welcomeUI(user);
+    checkSubscription();
     db.collection('guides').get().then(snapshot => {
       setupGuides(snapshot.docs);
     }).catch(err => {
