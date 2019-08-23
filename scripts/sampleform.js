@@ -2,7 +2,7 @@ const outpreview = document.querySelector('.outpreview');
 
 var ouserid = '';
 var oname = '';
-var oid = '';
+var oid ='';
 var obranch = '';
 var oage = '';
 var oprogram = '';
