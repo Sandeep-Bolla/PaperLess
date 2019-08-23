@@ -2,7 +2,7 @@ const outpreview = document.querySelector('.outpreview');
 
 var ouserid = '';
 var oname = '';
-var oid ='';
+var oid = '';
 var obranch = '';
 var oage = '';
 var oprogram = '';
@@ -35,9 +35,9 @@ auth.onAuthStateChanged(user => {
 
 function getData()
 {
-    document.getElementById('datefrom').value = obeg;
-    document.getElementById('dateto').value = oend;
-    document.getElementById('reason').value = reason;
+    obeg = document.getElementById('datefrom').value;
+    oend = document.getElementById('dateto').value;
+    reason = document.getElementById('reason').value;
     preview();
 }
 
@@ -46,14 +46,14 @@ function preview()
     const html = `The Head of the Department<br>
     ${obranch}<br>
     National Institute of Technology Silchar<br><br>
-    ${date}<br><b>Subject:</b>Application for leave<br>Respected Sir<br>
+    ${date}<br><b>Subject:</b>Application for leave<br><br>Respected Sir<br>
     This is to inform you that I, ${oname}, am ${osem} Sem student in the department of ${obranch}
     with Scholar ID: ${oid}. <br>
     Due to the following reason(s), I was not able to attend the lectures from ${obeg} to ${oend}.
-    Reason being, ${reason}. <br>
+    Reason being, ${reason}. <br><br>
 
-    Hence, you are kindly requested you to issue leave for the above-mentioned dates.<br>
-    Thanking You <br>
+    Hence, you are kindly requested you to issue leave for the above-mentioned dates.<br><br>
+    Thanking You <br><br>
     Yours Sincerely <br>
     ${oname}<br>
     ${obranch}<br>
