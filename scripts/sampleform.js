@@ -33,29 +33,20 @@ auth.onAuthStateChanged(user => {
     }
 })
 
-function getStatus() {
-    db.collection('/statusdb').doc(auth.currentUser.uid).get().then(
-        doc => {
-            var k = doc.data().reason;
-            console.log(doc.data().k)
-        }
-    )
-}
-
 function pushData() {
     var autodoc = db.collection('/recieved').doc();
-    db.collection('/statusdb').doc(auth.currentUser.uid).set({
-        reason: autodoc,
-        autodoc: 'pending'
+    console.log(autodoc);
+    db.collection('/users').doc(auth.currentUser.uid).set({
+        'Leave': 'pending'
     }, { merge: true })
     autodoc.set({
         'UserID': auth.currentUser.uid,
+        'subject': 'Leave',
         'ID': oid,
         'Reason': reason,
         'From-Date': obeg,
         'End-Date': oend,
     }, { merge: true })
-    getStatus();
 }
 
 function getData() {
