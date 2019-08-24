@@ -13,9 +13,9 @@ var osem = '';
 var obeg = '';
 var oend = '';
 var reason = '';
-	
+
 var today = new Date();
-var date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
+var date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
 
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
@@ -33,16 +33,39 @@ auth.onAuthStateChanged(user => {
     }
 })
 
-function getData()
-{
+function getStatus() {
+    db.collection('/statusdb').doc(auth.currentUser.uid).get().then(
+        doc => {
+            var k = doc.data().reason;
+            console.log(doc.data().k)
+        }
+    )
+}
+
+function pushData() {
+    var autodoc = db.collection('/recieved').doc();
+    db.collection('/statusdb').doc(auth.currentUser.uid).set({
+        reason: autodoc,
+        autodoc: 'pending'
+    }, { merge: true })
+    autodoc.set({
+        'UserID': auth.currentUser.uid,
+        'ID': oid,
+        'Reason': reason,
+        'From-Date': obeg,
+        'End-Date': oend,
+    }, { merge: true })
+    getStatus();
+}
+
+function getData() {
     obeg = document.getElementById('datefrom').value;
     oend = document.getElementById('dateto').value;
     reason = document.getElementById('reason').value;
     preview();
 }
 
-function preview()
-{   
+function preview() {
     const html = `The Head of the Department<br>
     ${obranch}<br>
     National Institute of Technology Silchar<br><br>
@@ -72,25 +95,27 @@ function autoFill() {
 };
 
 
-const saveandforwardButton = document.getElementById('forward');
 
-saveandforwardButton.addEventListener("click", sendNotification);
 
-function sendNotification() {
-    //e.preventDefault();
-    const notificationMessage = "Got a notification Sir";
-    //if ( !notificationMessage ) return;
+//const saveandforwardButton = document.getElementById('forward');
 
-    ddb.ref('/notifications')
-        .push({
-            user: auth.currentUser.displayName,
-            message: notificationMessage,
-            //userProfileImg: auth.currentUser.photoURL
-        })
-        .then(() => {
-            document.getElementById('notification-message').value = "";
-        })
-        .catch(() => {
-            console.log("error sending notification :(")
-        });
-}
+//saveandforwardButton.addEventListener("click", sendNotification);
+
+// function sendNotification() {
+//     //e.preventDefault();
+//     const notificationMessage = "Got a notification Sir";
+//     //if ( !notificationMessage ) return;
+
+//     ddb.ref('/notifications')
+//         .push({
+//             user: auth.currentUser.displayName,
+//             message: notificationMessage,
+//             //userProfileImg: auth.currentUser.photoURL
+//         })
+//         .then(() => {
+//             document.getElementById('notification-message').value = "";
+//         })
+//         .catch(() => {
+//             console.log("error sending notification :(")
+//         });
+// }
