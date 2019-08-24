@@ -2,6 +2,9 @@
 auth.onAuthStateChanged(user => {
   if (user) {
     console.log('user logged in: ', user);
+    // if(user.uid == "DsenFL0sgNhUE4lTBfU79DJYAH52"){
+    //   window.location.replace('/pages/statusa.html');
+    // }
     setupUI(user);
     // welcomeUI(user);
     checkSubscription();

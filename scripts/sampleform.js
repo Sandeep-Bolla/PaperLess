@@ -1,4 +1,5 @@
 const outpreview = document.querySelector('.outpreview');
+//const appl = document.querySelector('.appl');
 
 var ouserid = '';
 var oname = '';
@@ -13,6 +14,9 @@ var osem = '';
 var obeg = '';
 var oend = '';
 var reason = '';
+
+var on1 = '';
+var os1 = '';
 
 var today = new Date();
 var date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
@@ -29,9 +33,32 @@ auth.onAuthStateChanged(user => {
             oprogram = doc.data().Program;
             osection = doc.data().Section;
             osem = doc.data().Sem;
+            ouserid = user.uid;
         })
     }
 })
+
+// function getStatus() {
+//     auth.onAuthStateChanged(user => {
+//         if (user) {
+//             db.collection('users').doc(user.uid).get().then(doc => {
+//                 on1 = 'Leave';
+//                 os1 = doc.data().Leave;
+//                 const html = `<table style="width:100%">
+//                 <tr>
+//                     <th>Application Name</th>
+//                     <th>Status</th>
+//                 </tr>
+//                 <tr>
+//                     <td>${on1}</td>
+//                     <td>${os1}</td>
+//                 </tr>
+//                 </table> `
+//                 appl.innerHTML = html;
+//             })
+//         }
+//     })
+// }
 
 function pushData() {
     var autodoc = db.collection('/recieved').doc();
