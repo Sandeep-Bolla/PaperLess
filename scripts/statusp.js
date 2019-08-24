@@ -15,10 +15,34 @@ function getStatus() {
                         <td>${os1}</td>
                     </tr>`
                 db.collection('/forms').doc().set({
-                    "url" : html
+                    "url": html
                 })
-        appl.innerHTML = html
+                appl.innerHTML = html;
             })
         }
     })
 }
+
+db.collection('approval').doc('random-id').get().then(doc => {
+    if (doc.data().approved== true) {
+        const html = `<tr>
+                        <td>Leave</td>
+                        <td>Granted</td>
+                    </tr>
+                    <div class="row">
+                    <button>
+                    <img class="responsive-img" src="/img/demoLetter.png"></img>
+                    </button>
+                    </div>`
+                    
+        appl.innerHTML = html;
+        window.stop();
+
+    }
+    else {
+        console.log("Pending");
+    }
+
+}).catch(err => {
+    console.log(err.message)
+});
