@@ -7,21 +7,6 @@ if('serviceWorker' in navigator){
     .then(reg => console.log('service worker registered'))
     .catch(err => console.log('service worker not registered', err));
 }
-
-// Notification.requestPermission(function(status) {
-//   console.log('Notification permission status:', status);
-// });
-
-// function displayNotification() {
-//   if (Notification.permission == 'granted') {
-//     console.log('Bro');
-//     navigator.serviceWorker.getRegistration().then(function(reg) {
-//       console.log('LoL');
-//       reg.showNotification('Hello world!');
-//     });
-//   }
-// }
-
 messaging.onTokenRefresh(handleTokenRefresh);
 
 subscribeButton.addEventListener("click", subscribeToNotifications);
@@ -63,7 +48,7 @@ function unsubscribeFromNotifications() {
   messaging.getToken()
     .then((token) => messaging.deleteToken(token))
     .then(() => ddb.ref('/tokens').orderByChild("uid").equalTo(auth.currentUser.uid).once('value'))
-    .then((snapshot) => {
+    .then((snapshot) =>  {
       const key = Object.keys(snapshot.val())[0];
       return ddb.ref('/tokens').child(key).remove();
     })

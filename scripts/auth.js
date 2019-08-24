@@ -2,17 +2,21 @@
 auth.onAuthStateChanged(user => {
   if (user) {
     console.log('user logged in: ', user);
-    // if(user.uid == "DsenFL0sgNhUE4lTBfU79DJYAH52"){
-    //   window.location.replace('/pages/statusa.html');
-    // }
-    setupUI(user);
-    // welcomeUI(user);
-    checkSubscription();
-    db.collection('guides').get().then(snapshot => {
-      setupGuides(snapshot.docs);
-    }).catch(err => {
-      console.log(err.message)
-    });
+    if (user.uid == "DsenFL0sgNhUE4lTBfU79DJYAH52") {
+      window.location.replace("/pages/statusa.html");
+    }
+
+    else {
+      setupUI(user);
+      // welcomeUI(user);
+      checkSubscription();
+      db.collection('guides').get().then(snapshot => {
+        setupGuides(snapshot.docs);
+      }).catch(err => {
+        console.log(err.message)
+      });
+    }
+
   } else {
 
     setupUI();
